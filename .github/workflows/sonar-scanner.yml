@@ -9,7 +9,9 @@ on:
 
 env:
   DOCKERFILE_PATH: ./sonar-scanner/
-  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_ID: kalkanisys/sonar-scanner
+  DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
 jobs:
   publish:

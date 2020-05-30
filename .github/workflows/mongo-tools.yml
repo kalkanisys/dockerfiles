@@ -9,7 +9,9 @@ on:
 
 env:
   DOCKERFILE_PATH: ./mongo-tools/
-  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_ID: kalkanisys/mongo-tools
+  DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
 jobs:
   publish:
