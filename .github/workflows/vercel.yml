@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set image version
-        runs: |
+        run: |
           echo "::set-env name=IMAGE_VERSION::$(cat vercel/VERSION)" 
       - name: Build and push image
         env: 
