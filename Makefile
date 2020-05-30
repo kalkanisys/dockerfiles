@@ -33,11 +33,11 @@ tag: ## Tag image witg version image version
 	$(DOCKER) tag $(IMAGE_NAME) $(IMAGE_ID):$(IMAGE_VERSION)
 
 publish: login build tag ## Build and publish image with image version
-	$(DOCKER) push $(IMAGE_NAME) $(IMAGE_ID):$(IMAGE_VERSION)
+	$(DOCKER) push $(IMAGE_ID):$(IMAGE_VERSION)
 
 tag-latest: ## Tag latest image
 	$(DOCKER) tag $(IMAGE_NAME) $(IMAGE_ID):latest
 
 publish-latest: publish tag-latest ## Build and publish image with image version and latest tab
-	$(DOCKER) push $(IMAGE_NAME) $(IMAGE_ID):latest
+	$(DOCKER) push $(IMAGE_ID):latest
 
