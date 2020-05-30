@@ -23,4 +23,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Publish image
-        run: make publish
+        run: make publish-latest
