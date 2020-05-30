@@ -9,6 +9,7 @@ on:
 
 env:
   DOCKERFILE_PATH: ./sonar-scanner/
+  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   publish:
