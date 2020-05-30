@@ -1,0 +1,22 @@
+name: Publish sonar-scanner docker image
+
+on:
+  push:
+    paths:
+      - "sonar-scanner/**"
+    branches:
+      - master
+
+env:
+  DOCKERFILE_PATH: ./sonar-scanner/
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Publish image
+        run: make publish
