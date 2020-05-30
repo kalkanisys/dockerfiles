@@ -1,0 +1,9 @@
+**/Dockerfile*
+**/*.md
+**/Makefile
+**/*.mk
+**/VERSION
+.git/
+.gitignore
+.git*
+.github/

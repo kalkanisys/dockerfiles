@@ -1,0 +1,32 @@
+name: Publish vercel docker image
+
+on:
+  push:
+    paths:
+      - "vercel/**"
+    branches:
+      - master
+
+jobs:
+  public:
+    name: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set image version
+        runs: |
+          echo "::set-env name=IMAGE_VERSION::$(cat vercel/VERSION)" 
+      - name: Build and push image
+        env: 
+          DOCKER_BUILDKIT: 1
+        with:
+          registry: docker.pkg.github.com
+          username: $GITHUB_ACTOR
+          password: ${{ secrets.GITHUB_TOKEN }}
+          repository: $GITHUB_REPOSITORY/vercel
+          tags: latest, $IMAGE_VERSION
+          path: ./vercel
+          cache_froms: docker.pkg.github.com/$GITHUB_REPOSITORY/vercel:latest
+          add_git_labels: true
