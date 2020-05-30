@@ -1,0 +1,23 @@
+name: Publish mongo-tools docker image
+
+on:
+  push:
+    paths:
+      - "mongo-tools/**"
+    branches:
+      - master
+
+env:
+  DOCKERFILE_PATH: ./mongo-tools/
+  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Publish image
+        run: make publish
