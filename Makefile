@@ -1,4 +1,4 @@
-ENV = /usr/bin/env
+# ENV = /usr/bin/env
 DOCKER_BUILDKIT ?= 1
 DOCKER ?= docker
 DOCKERFILE_PATH ?= .
@@ -9,7 +9,7 @@ DOCKER_USERNAME ?= ${GITHUB_ACTOR}
 DOCKER_PASSWORD ?= ${GITHUB_TOKEN}
 IMAGE_VERSION ?= $(shell test -f ${DOCKERFILE_PATH}/VERSION && cat ./${DOCKERFILE_PATH}/VERSION)
 
-.SHELLFLAGS = -c # Run commands in a -c flag 
+# .SHELLFLAGS = -c # Run commands in a -c flag 
 
 .SILENT: ;               # no need for @
 .ONESHELL: ;             # recipes execute in same shell
@@ -23,6 +23,7 @@ help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 login: ## Login to docker registry
+	echo "Login to $(DOCKER_REPO) using $(DOCKER_USERNAME) username"
 	echo "$(DOCKER_PASSWORD)" | docker login $(DOCKER_REPO) -u $(DOCKER_USERNAME) --password-stdin
 
 build: ## Build docker image
