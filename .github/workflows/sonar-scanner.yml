@@ -9,6 +9,7 @@ on:
 
 env:
   DOCKERFILE_PATH: ./sonar-scanner/
+  DOCKER_REPO: docker.io
   IMAGE_ID: kalkanisys/sonar-scanner
   DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}

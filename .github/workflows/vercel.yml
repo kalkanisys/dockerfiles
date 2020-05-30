@@ -9,6 +9,7 @@ on:
 
 env:
   DOCKERFILE_PATH: ./vercel/
+  DOCKER_REPO: docker.io
   IMAGE_ID: kalkanisys/vercel
   DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}

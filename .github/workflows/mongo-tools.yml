@@ -9,6 +9,7 @@ on:
 
 env:
   DOCKERFILE_PATH: ./mongo-tools/
+  DOCKER_REPO: docker.io
   IMAGE_ID: kalkanisys/mongo-tools
   DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
