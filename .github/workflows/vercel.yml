@@ -7,6 +7,10 @@ on:
     branches:
       - master
 
+env:
+  DOCKERFILE_PATH: ./vercel/
+  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   publish:
     name: publish
@@ -15,19 +19,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set image version
-        run: echo "::set-output name=image_version::$(cat vercel/VERSION)"
-        id: version
-      - name: Build and push image
-        env: 
-          DOCKER_BUILDKIT: 1
-        uses: docker/build-push-action@v1
-        with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}/vercel
-          tags: latest, ${{ steps.version.outputs.image_version }}
-          path: ./vercel
-          cache_froms: docker.pkg.github.com/${{ github.repository }}/vercel:latest
-          add_git_labels: true
+      - name: Publish image
+        run: make publish
